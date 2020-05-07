@@ -1,0 +1,362 @@
+7-Up
+Absinthe
+Acorn Squash
+Agave Nectar
+Almond
+Amaranth
+Anaheim Chile
+Apple
+Apple Cider
+Apple Juice
+Apricot nectar
+Apricots, Dried
+Apricots, Fresh
+Armenian Cucumber
+Arrowroot
+Artichoke
+Arugula
+Asian Pears
+Asparagus
+Avocado
+Baby Candy Cane Beets
+Baby Oyster Mushrooms
+Bacon
+Banana
+Banana nectar
+Banana Squash
+Barbados Cherry
+Beer
+Beet Honey
+Beets
+Belgian Endive
+Bell Peppers
+Bitter Melons
+Black Crowberry
+Black Currants
+Black Radish
+Black Salsify
+Blackberries
+Blackberry Juice
+Blood Orange
+Blueberries
+Bok Choy
+Boniato
+Bourbon
+Boysenberries
+Brandy
+Breadfruit
+Broccoflower
+Broccoli
+Broccoli Rabe
+Broccolini
+Brown Sugar
+Brown Turkey Fig
+Brussels Sprouts
+Burdock Root
+Butter Lettuce
+Buttercup Squash
+Butternut Squash
+Butterscotch
+Cactus
+Cactus Pear
+Canary Melon
+Cane Syrup
+Cantaloupe
+Cantaloupe nectar
+Cape Gooseberries
+Cara Cara Navel Orange
+Caramel
+Caramel Syrup
+Carbonated Water
+Cardoon
+Caribbean June Plum
+Carissa
+Carnival Squash
+Carrot
+Casaba Melon
+Cauliflower
+Celeriac
+Celery
+Champagne Grapes
+Chanterelle Mushroom
+Chartreuse
+Chayote Squash
+Cherimoya
+Cherries
+Cherries, Sour
+Cherry Coke
+Cherry Tomato
+Chili Sauce
+Chinese Eggplant
+Chinese Long Bean
+Chocolate Syrup
+Chokecherries
+Cider
+Cinnamon
+Cinnamon Stick
+Cipolline Onions
+Citra
+Clam
+Clementines
+Coca Cola
+Coconut
+Coconut Milk
+Coffee
+Cognac
+Collard Greens
+Concord Grapes
+Condensed Milk
+Corn
+Corn Salad
+Cotton Candy Grapes
+Crab Apples
+Cranberries, Dried
+Cranberries, Fresh
+Cranberry Juice
+Cream
+Crenshaw Melon
+Crookneck Squash
+Cucumber
+Custard Apple
+D’Agen Sugar Plum
+Daikon Radish
+Dandelion Greens
+Date Plum
+Dates
+Delicata Squash
+Demerara Syrup
+Dr. Pepper
+Durian
+Eggplant
+Elderberries
+Endive
+Enoki Mushrooms
+Evaporated Milk
+Everclear
+Fanta
+Fava Beans
+Feijoa
+Fennel
+Fiddlehead Ferns
+Fig, Dried
+Fig, Fresh
+Fingerling Potato
+French Beans
+Fruit nectar, NFS
+Fruit Syrup
+Fudge
+Gai Lan
+Galangal Root
+Galia Melon
+Garlic
+Gin
+Ginger Ale
+Ginger Beer
+Ginger Root
+Golden Kiwifruit
+Grape Juice
+Grape Juice
+Grapefruit
+Grapes
+Green Beans
+Green Cabbage
+Green Onion
+Green Soybeans
+Green Tomato
+Guava
+Guava nectar
+Hard Cider
+Hearts of Palm
+Honey
+Honeycrisp Apple
+Honeydew Melon
+Horchata
+Horseradish Root
+Hubbard Squash
+Huckleberries
+Ice Cream
+Iceberg Lettuce
+Iced Coffee
+Iced Tea
+Irish Cream
+Izze Sparkling
+Jackfruit
+Jalapeno Peppers
+Jambolan
+Jerusalem Artichokes
+Jicama
+Jujube
+Kabocha Squash
+Kaffir Lime
+Kale
+Key Lime
+Kiwano
+Kiwifruit
+Kohlrabi
+Kumquat
+Lamb’s Quarters
+Leaf Lettuce
+Leek
+Lemon
+Lemon Lime Soda
+Lemonade
+Lime
+Loganberries
+Longan
+Loquat
+Lychee
+Mamey Sapote
+Mandarin Orange
+Mango
+Mango nectar
+Mangosteen
+Manoa Lettuce
+Maple Syrup
+Maradol Papaya
+Maraschino Cherry
+Mead
+Mediterranean Medlar
+Milk
+Mint
+Mocha Coffee
+Molasses
+Morel Mushrooms
+Mountain Dew
+Mulberries
+Muscadine Grapes
+Mushrooms
+Mustard Greens
+Nectarine
+Nut
+Okra
+Olives
+Ong Choy Spinach
+Onion
+Opo Squash
+Orange
+Orange Crush
+Orange Peel
+Papaya
+Papaya Juice
+Papaya nectar
+Parsnips
+Passion Fruit
+Passion Fruit Juice
+Passion fruit nectar
+Peach
+Peach nectar
+Pear
+Pear nectar
+Pearl Onions
+Peas
+Pepper
+Pepsi
+Pepsi Wild Cherry
+Persian Melon
+Persimmon
+Pineapple
+Pineapple Juice
+Plantain
+Plum
+Plum, Dried
+Pomegranate
+Pomegranate Juice
+Port Wine
+Potato
+Prune Juice
+Pummelo
+Pumpkin
+Purple Asparagus
+Purple Hull Peas
+Purslane
+Quince
+Radicchio
+Radish
+Raisins
+Raspberries
+Red Banana
+Red Currants
+Red Leaf Lettuce
+Red Potato
+Red Wine
+Rhubarb
+Romaine Lettuce
+Root Beer
+Rose
+Rose Apple
+Rum
+Rutabaga
+Sake
+Salad Savoy Leafy Vegetable
+Salmonberry
+Salt
+Sapodilla
+Sapote
+Scotch
+Sea Salt
+Serrano Chili Peppers
+Shallots
+Sharon Fruit
+Shiitake Mushrooms
+Sierra Mist
+Simple Syrup
+Snow Peas
+Soju
+Sorghum Syrup
+Sorrel
+Sour Mix
+Soursop
+Soursop, nectar
+South African Baby Pineapple
+Sparkling Wine
+Spinach
+Sprite
+Squirt
+Star Anise
+Star Fruit
+Strawberries
+Strawberry Guava
+Strawberry Juice
+Strawberry Papaya
+Sugar Apple
+Sugar Cane
+Sugar Cube
+Sugar Snap Peas
+Summer Squash
+Sunkist Orange
+Surinam Cherry
+Sweet Dumpling Squash
+Sweet Potato
+Swiss Chard
+Tangerine
+Tarragon
+Tequila
+Tomatillo
+Tomato
+Tomato Juice
+Tropicana Twister Soda
+Turbinado Syrup
+Turnip
+Ugli Fruit
+Upland Cress
+Vanilla Coke
+Vermouth
+Vidalia Onions
+Vodka
+Wasabi Root
+Water
+Water Coconut
+Watercress
+Watermelon
+Watermelon Juice
+Whiskey
+White Asparagus
+White Sugar
+White Wine
+Wild Blueberries
+Wine
+Winged Beans
+Yam
+Yucca Root
+Yukon Gold Potatoes
+Zucchini
