@@ -58,16 +58,15 @@ def connect_to_db(app, db_uri='postgresql:///cocktail'):
     # Configure to use PostgreSQL database
     app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False    
-    app.config['SQLALCHEMY_ECHO'] = True
+    app.config['SQLALCHEMY_ECHO'] = False
     db.app = app
     db.init_app(app)
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # Work directly with database when running module interactively
      
-    from server import app
-    connect_to_db(app)
-    db.create_all()
-    print("Connected to DB.")
+    # from server import app
+    # connect_to_db(app)
     
+
