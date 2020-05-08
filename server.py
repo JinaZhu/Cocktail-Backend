@@ -1,9 +1,17 @@
 from flask import Flask, session, jsonify, request
+import json
+import os
 import requests
 from model import connect_to_db, db, User, Ingredient, Cocktail
 from model_helper import add_user
 
-res = requests.get('https://www.thecocktaildb.com/api/json/v1/9973533/search.php?s=moscow_mule')
+api_key = os.environ['api_key']
+
+##################################################################################################
+
+payload = {'key': api_key}
+
+res = requests.get('https://www.thecocktaildb.com/api/json/v2//search.php?s=moscow_mule', params=payload)
 
 cocktail_results = res.json()
 
