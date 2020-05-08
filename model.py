@@ -41,17 +41,11 @@ class Cocktail(db.Model):
     img_url = db.Column(db.String(200), nullable=True)
     user_id = db.Column(db.Integer, 
                         db.ForeignKey('users.user_id'), index=True)
-    ing_id = db.Column(db.Integer,
-                              db.ForeignKey('ingredients.ing_id'), index=True)
-    
+
     # Define relationship to user
     user = db.relationship('User',
                            backref=db.backref('cocktails', order_by=cocktail_id))
-
-    # Define relationship to ingredient
-    ing = db.relationship('Ingredient',
-                          backref=db.backref('cocktails', order_by=cocktail_id))
-                        
+   
 
 def connect_to_db(app, db_uri='postgresql:///cocktail'):
     
