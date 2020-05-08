@@ -15,13 +15,16 @@ def register_form():
     user = User.query.filter(User.email == user_input['email']).first()
 
     if user:
-        return
+        return 'User account already exists'
     
     new_user = add_user(user_input)
 
     session['user'] = new_user.user_id
 
-    return (new_user.first_name)
+    response = {'user_name': new_user.first_name,
+                'message': 'Successfully registered!'}
+
+    return jsonify(response)
 
 
 @app.route('/login', methods=['POST'])
@@ -33,11 +36,14 @@ def login():
     user = User.query.filter(User.email == user_login['email']).first()
 
     if not (user) or (user.password != user_login['password']):
-        return
+        return 'The user or password information is incorrect'
     
     session['user'] = user.user_id
 
-    return (user.first_name)
+    response = {'user_name': user.first_name,
+                'message': 'Successfully logged in!'}
+
+    return jsonify(response)
 
 
 @app.route('/logout', methods=['POST'])
