@@ -1,4 +1,5 @@
 from flask import Flask, session, jsonify, request
+import requests
 from model import connect_to_db, db, User, Ingredient, Cocktail
 from model_helper import add_user
 
