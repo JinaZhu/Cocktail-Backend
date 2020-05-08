@@ -21,7 +21,7 @@ def user_saved_recipes():
 
     if not check_duplicates:
         save_cocktail = Cocktail(cocktail_name=cocktail_name,
-                                 img_url=img_url, ingredients=ingredients, user_id=user_id)
+                                 img_url=img_url, ing_name=ingredients, user_id=user_id)
 
         db.session.add(save_cocktail)
         db.session.commit()
@@ -40,7 +40,7 @@ def display_saved_cocktails():
 
     for cocktail in saved_cocktail:
         saved_cocktail_detail.append({'cocktail_name': cocktail.cocktail_name,
-                                      'img_url': cocktail.img_url, 'ingredients': cocktail.ingredients})
+                                      'img_url': cocktail.img_url, 'ingredients': cocktail.ing_name})
 
     return jsonify(saved_cocktail_detail)
 
