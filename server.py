@@ -11,7 +11,7 @@ api_key = os.environ['api_key']
 
 payload = {'key': api_key}
 
-res = requests.get('https://www.thecocktaildb.com/api/json/v2//search.php?s=moscow_mule', params=payload)
+res = requests.get('https://www.thecocktaildb.com/api/json/v2/{key}/search.php?s=moscow_mule', params=payload)
 
 cocktail_results = res.json()
 
