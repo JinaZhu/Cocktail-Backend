@@ -1,5 +1,4 @@
 from flask import Flask, session, jsonify, request
-import requests
 from model import connect_to_db, db, User, Ingredient, Cocktail
 from model_helper import add_user
 
@@ -10,9 +9,7 @@ app.secret_key = 'TEMP'
 @app.route('/register', methods=['POST'])
 def register_form():
     """User register form"""
-
     user_input = request.get_json()
-
     user = User.query.filter(User.email == user_input['email']).first()
 
     if user:
@@ -33,17 +30,16 @@ def login():
     """User login"""
 
     user_login = request.get_json()
-
     user = User.query.filter(User.email == user_login['email']).first()
-
+    
     if not (user) or (user.password != user_login['password']):
-        return 'The user or password information is incorrect'
+        return {'message': 'The user or password information is incorrect'}
 
     session['user'] = user.user_id
 
     response = {'user_name': user.first_name,
                 'message': 'Successfully logged in!'}
-
+    
     return jsonify(response)
 
 
@@ -56,7 +52,7 @@ def logout():
     return ('', 204)
 
 
-@app.route('/save', method=["POST"])
+@app.route('/save', methods=["POST"])
 def user_saved_recipes():
     """save user's favorite recipes in database"""
 
