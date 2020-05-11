@@ -13,7 +13,7 @@ def register_form():
     user = User.query.filter(User.email == user_input['email']).first()
 
     if user:
-        return 'User account already exists'
+        return {'message': 'User account already exists'}
 
     new_user = add_user(user_input)
 
@@ -31,7 +31,7 @@ def login():
 
     user_login = request.get_json()
     user = User.query.filter(User.email == user_login['email']).first()
-    
+
     if not (user) or (user.password != user_login['password']):
         return {'message': 'The user or password information is incorrect'}
 
