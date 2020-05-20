@@ -1,13 +1,12 @@
 from flask import Flask, session, jsonify, request
 from model import connect_to_db, db, User, Ingredient, Cocktail
 from model_helper import add_user
+import os
 
+api_url = os.environ['api_url']
 
 app = Flask(__name__)
 app.secret_key = 'TEMP'
-
-
-
 
 @app.route('/register', methods=['POST'])
 def register_form():
@@ -97,6 +96,18 @@ def display_saved_cocktails():
 
     return jsonify(saved_cocktail_detail)
 
+@app.route('/results.json')
+def search_bar():
+    """api results for search bar based on ingredients"""
+
+    #get form variable from search bar
+    
+    list_of_ingredients = request.args["ingredients"]
+
+    ingredients = str(list_of_ingredients).strip('[]')
+    payload = {'ingredients': ingredients}
+
+    full_api_call = 
 
 if __name__ == '__main__':
 
