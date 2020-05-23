@@ -2,8 +2,9 @@ from flask import Flask, session, jsonify, request
 from model import connect_to_db, db, User, Ingredient, Cocktail
 from model_helper import add_user
 import os
+import requests
 
-api_url = os.environ['api_url']
+api_url = os.environ['ingredients_api_call']
 
 app = Flask(__name__)
 app.secret_key = 'TEMP'
@@ -104,10 +105,10 @@ def search_bar():
     
     list_of_ingredients = request.args["ingredients"]
 
-    ingredients = str(list_of_ingredients).strip('[]')
-    payload = {'ingredients': ingredients}
+    ingredients = ",".join(list_of_ingredients)
+    payload = {'i': ingredients}
 
-    full_api_call = 
+    ingredients_api_call = requests.get()
 
 if __name__ == '__main__':
 
