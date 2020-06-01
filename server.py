@@ -4,7 +4,7 @@ from model_helper import add_user
 import os
 import requests
 
-api_url = os.environ['ingredients_api_call']
+cocktail_api_key = os.environ['cocktail_api_key']
 
 app = Flask(__name__)
 app.secret_key = 'TEMP'
@@ -97,18 +97,28 @@ def display_saved_cocktails():
 
     return jsonify(saved_cocktail_detail)
 
-@app.route('/results.json')
+@app.route('/ingredientsresults.json')
 def search_bar():
     """api results for search bar based on ingredients"""
 
     #get form variable from search bar
-    
     list_of_ingredients = request.args["ingredients"]
 
+    #joins each item in list by getting rid of white space between commas
     ingredients = ",".join(list_of_ingredients)
-    payload = {'i': ingredients}
 
-    ingredients_api_call = requests.get()
+    #api request using CocktailDB 
+    ingredients_api = requests.get(f'https://www.thecocktaildb.com/api/json/v2/{cocktail_api_key}/filter.php?i={ingredients}')
+    
+    #converting get request into JSON file
+    ingredients_results = ingredients_api.json()
+
+    #assigning drink results to drinks key
+    drinks = ingredients_results['drinks']
+    
+    #
+
+
 
 if __name__ == '__main__':
 
