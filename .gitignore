@@ -1,3 +1,7 @@
 venv
 __pycache__/
+<<<<<<< HEAD
 secrets.sh
+=======
+.DS_Store
+>>>>>>> master

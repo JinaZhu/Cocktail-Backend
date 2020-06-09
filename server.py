@@ -6,8 +6,6 @@ import requests
 
 cocktail_api_key = os.environ['cocktail_api_key']
 
-app = Flask(__name__)
-app.secret_key = 'TEMP'
 
 @app.route('/register', methods=['POST'])
 def register_form():
@@ -22,7 +20,7 @@ def register_form():
 
     session['user'] = new_user.user_id
 
-    response = {'user_name': new_user.first_name,
+    response = {'userName': new_user.first_name,
                 'message': 'Successfully registered!'}
 
     return jsonify(response)
@@ -40,7 +38,7 @@ def login():
 
     session['user'] = user.user_id
 
-    response = {'user_name': user.first_name,
+    response = {'userName': user.first_name,
                 'message': 'Successfully logged in!'}
     
     return jsonify(response)
