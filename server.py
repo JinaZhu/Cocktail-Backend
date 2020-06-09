@@ -6,6 +6,18 @@ import requests
 
 cocktail_api_key = os.environ['cocktail_api_key']
 
+@app.route('/getUser', methods=['GET'])
+def get_user():
+    """Check if user is already logged in"""
+
+    check_user = session.get('user')
+    user = User.query.filter(User.user_id == check_user).first()
+
+    if user:
+        return {'response': user.first_name}
+
+    return 'User is not logged in'
+
 
 @app.route('/register', methods=['POST'])
 def register_form():
