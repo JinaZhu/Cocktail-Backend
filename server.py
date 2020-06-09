@@ -117,12 +117,14 @@ def search_bar():
     drinks = ingredients_results['drinks']
     
     #create list for search results
-    drink_name = []
+    drink_results = []
 
     #append drink string into new list
     for i, drink in enumerate(drinks):
-        drink_name.append(drinks[i]['strDrink'])
-    return jsonify(drink_name)
+        drink_results.append({'drink_name': drinks[i]['strDrink'], 
+                            'drink_thumb': drinks[i]['strDrinkThumb']})
+    
+    return jsonify(drink_results)
 
 if __name__ == '__main__':
 
