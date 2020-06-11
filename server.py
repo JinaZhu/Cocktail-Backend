@@ -4,6 +4,8 @@ from model_helper import add_user
 import os
 import requests
 
+app = Flask(__name__)
+app.secret_key = 'TEMP'
 cocktail_api_key = os.environ['cocktail_api_key']
 
 @app.route('/getUser', methods=['GET'])
