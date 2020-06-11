@@ -14,7 +14,7 @@ def open_and_read_file(filepath):
 def seed_data(str_data):
     """Seed all ingredients into database"""
 
-    str_data = str_data.split()
+    str_data = str_data.split('\n')
     for ingredient in str_data:
 
         new_ingredient = Ingredient(ing_name=ingredient)

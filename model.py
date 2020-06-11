@@ -57,10 +57,10 @@ def connect_to_db(app, db_uri='postgresql:///cocktail'):
     db.init_app(app)
 
 
-# if __name__ == "__main__":
-    # Work directly with database when running module interactively
+if __name__ == "__main__":
+    #Work directly with database when running module interactively
      
-    # from server import app
-    # connect_to_db(app)
+    from server import app
+    connect_to_db(app)
     
 
