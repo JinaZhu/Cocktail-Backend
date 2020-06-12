@@ -4,6 +4,8 @@ from model_helper import add_user
 import os
 import requests
 
+app = Flask(__name__)
+app.secret_key = 'TEMP'
 cocktail_api_key = os.environ['cocktail_api_key']
 
 @app.route('/getUser', methods=['GET'])
@@ -107,29 +109,32 @@ def display_saved_cocktails():
 
     return jsonify(saved_cocktail_detail)
 
-@app.route('/ingredientsresults.json')
+@app.route('/ingredientsresults.json', methods=["POST"])
 def search_bar():
     """api results for search bar based on ingredients"""
 
     #get form variable from search bar
-    list_of_ingredients = request.args["ingredients"]
+    list_of_ingredients = request.get_json()
+    print('list_of_ingredients', list_of_ingredients['ingredients'])
 
     #joins each item in list by getting rid of white space between commas
-    ingredients = ",".join(list_of_ingredients)
+    ingredients = ",".join(list_of_ingredients['ingredients'])
+    print('ingredients', ingredients)
 
-    #api request using CocktailDB 
+    # #api request using CocktailDB 
     ingredients_api = requests.get(f'https://www.thecocktaildb.com/api/json/v2/{cocktail_api_key}/filter.php?i={ingredients}')
     
-    #converting get request into JSON file
+    # #converting get request into JSON file
     ingredients_results = ingredients_api.json()
 
-    #assigning drink results to drinks key
+    # #assigning drink results to drinks key
     drinks = ingredients_results['drinks']
+    print('drinks', drinks)
     
-    #create list for search results
+    # #create list for search results
     drink_results = []
 
-    #append drink string into new list
+    # #append drink string into new list
     for i, drink in enumerate(drinks):
         drink_results.append({'drink_name': drinks[i]['strDrink'], 
                             'drink_thumb': drinks[i]['strDrinkThumb']})
