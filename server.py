@@ -109,17 +109,43 @@ def display_saved_cocktails():
 
     return jsonify(saved_cocktail_detail)
 
+
+def drink_recipe(drink_results):
+    """api search for drinks recipes"""
+    drink_info = []
+    for drink in drink_results:
+        drink_name = drink['drink_name']
+        drink_dict = {'drink_name': drink_name, 'drink_image': drink['drink_thumb']}
+        drink_name = drink_name.replace(' ', '_')
+        # print('drink names', drink_name)
+
+        recipe_api = requests.get(f'https://www.thecocktaildb.com/api/json/v2/{cocktail_api_key}/search.php?s={drink_name}')
+
+        recipe_results = recipe_api.json()
+        # print(recipe_results)
+
+        drink_ingredients = []
+        num = 1
+        while f'strIngredient{num}' in recipe_results['drinks'][0] and recipe_results['drinks'][0][f'strIngredient{num}'] is not None:
+            drink_ingredients.append(recipe_results['drinks'][0][f'strIngredient{num}'])
+            num += 1
+
+        drink_dict['drink_ingr'] = drink_ingredients
+    
+        drink_info.append(drink_dict)
+    return drink_info
+        
 @app.route('/ingredientsresults.json', methods=["POST"])
 def search_bar():
     """api results for search bar based on ingredients"""
 
     #get form variable from search bar
     list_of_ingredients = request.get_json()
-    print('list_of_ingredients', list_of_ingredients['ingredients'])
+    # print('list_of_ingredients', list_of_ingredients['ingredients'])
 
     #joins each item in list by getting rid of white space between commas
     ingredients = ",".join(list_of_ingredients['ingredients'])
-    print('ingredients', ingredients)
+    # print('ingredients', ingredients)
 
     # #api request using CocktailDB 
     ingredients_api = requests.get(f'https://www.thecocktaildb.com/api/json/v2/{cocktail_api_key}/filter.php?i={ingredients}')
@@ -129,17 +155,22 @@ def search_bar():
 
     # #assigning drink results to drinks key
     drinks = ingredients_results['drinks']
-    print('drinks', drinks)
+    # print('drinks', drinks)
     
     # #create list for search results
     drink_results = []
 
     # #append drink string into new list
-    for i, drink in enumerate(drinks):
-        drink_results.append({'drink_name': drinks[i]['strDrink'], 
-                            'drink_thumb': drinks[i]['strDrinkThumb']})
+    for i in range(0,10):
+        if i < len(drinks):
+            drink_results.append({'drink_name': drinks[i]['strDrink'], 
+                                'drink_thumb': drinks[i]['strDrinkThumb']})
+        else:
+            break
     
-    return jsonify(drink_results)
+    cocktails_list = drink_recipe(drink_results)
+
+    return jsonify(cocktails_list)
 
 if __name__ == '__main__':
 
