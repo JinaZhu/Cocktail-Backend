@@ -1,12 +1,16 @@
 from flask import Flask, session, jsonify, request
+from flask_bcrypt import Bcrypt
 from model import connect_to_db, db, User, Ingredient, Cocktail
 from model_helper import add_user
 import os
 import requests
 
+
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 app.secret_key = 'TEMP'
 cocktail_api_key = os.environ['cocktail_api_key']
+
 
 @app.route('/getUser', methods=['GET'])
 def get_user():
@@ -25,12 +29,13 @@ def get_user():
 def register_form():
     """User register form"""
     user_input = request.get_json()
-    user = User.query.filter(User.email == user_input['email']).first()
-
+    user = User.query.filter(User.email == user_input['email']).first()    
+    
     if user:
         return {'message': 'User account already exists'}
 
-    new_user = add_user(user_input)
+    pw_hash = bcrypt.generate_password_hash(user_input['password']).decode('utf-8')
+    new_user = add_user(user_input, pw_hash)
 
     session['user'] = new_user.user_id
 
@@ -46,8 +51,12 @@ def login():
 
     user_login = request.get_json()
     user = User.query.filter(User.email == user_login['email']).first()
-
-    if not (user) or (user.password != user_login['password']):
+    
+    if user:
+        pw_match = bcrypt.check_password_hash(user.password, user_login['password'])
+    
+    if not user or not pw_match:
+    # if not (user) or (user.password != user_login['password']):
         return {'message': 'The user or password information is incorrect'}
 
     session['user'] = user.user_id
