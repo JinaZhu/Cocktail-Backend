@@ -63,7 +63,7 @@ def login():
 
     response = {'userName': user.first_name,
                 'message': 'Successfully logged in!'}
-    
+
     return jsonify(response)
 
 
@@ -80,25 +80,30 @@ def logout():
 def user_saved_recipes():
     """save user's favorite recipes in database"""
 
-    cocktail_name = request.form["cocktailName"]
-    img_url = request.form["imgUrl"]
-    ingredients = request.form["ingredients"]
-    user_id = session.get("user_id")
+    get_save = request.get_json()
+    drink_img = get_save['drink_image']
+    drink_ingr = get_save['drink_ingr']
+    drink_name = get_save['drink_name']
 
+    user_id = session.get("user")
     current_user = User.query.filter_by(user_id=user_id).first()
 
     if not current_user:
-        return ("Please login or register!")
+        return {'response': 'User is not logged in'}
 
-    check_duplicates = Cocktail.query.filter_by(
-        user_id=user_id, cocktail_name=cocktail_name).first()
+    existing_save = Cocktail.query.filter_by(
+        user_id=user_id, cocktail_name=drink_name).first()
 
-    if not check_duplicates:
-        save_cocktail = Cocktail(cocktail_name=cocktail_name,
-                                 img_url=img_url, ing_name=ingredients, user_id=user_id)
+    if not existing_save:
+        save_cocktail = Cocktail(
+            user_id=user_id, cocktail_name=drink_name, img_url=drink_img)
 
         db.session.add(save_cocktail)
         db.session.commit()
+
+        return {'response': 'Saved'}
+    else:
+        return {'response': 'Already Saved'}
 
     return "saved!"
 
@@ -124,11 +129,13 @@ def drink_recipe(drink_results):
     drink_info = []
     for drink in drink_results:
         drink_name = drink['drink_name']
-        drink_dict = {'drink_name': drink_name, 'drink_image': drink['drink_thumb']}
+        drink_dict = {'drink_name': drink_name,
+                      'drink_image': drink['drink_thumb']}
         drink_name = drink_name.replace(' ', '_')
         # print('drink names', drink_name)
 
-        recipe_api = requests.get(f'https://www.thecocktaildb.com/api/json/v2/{cocktail_api_key}/search.php?s={drink_name}')
+        recipe_api = requests.get(
+            f'https://www.thecocktaildb.com/api/json/v2/{cocktail_api_key}/search.php?s={drink_name}')
 
         recipe_results = recipe_api.json()
         # print(recipe_results)
@@ -136,50 +143,55 @@ def drink_recipe(drink_results):
         drink_ingredients = []
         num = 1
         while f'strIngredient{num}' in recipe_results['drinks'][0] and recipe_results['drinks'][0][f'strIngredient{num}'] is not None:
-            drink_ingredients.append(recipe_results['drinks'][0][f'strIngredient{num}'])
+            drink_ingredients.append(
+                recipe_results['drinks'][0][f'strIngredient{num}'])
             num += 1
 
         drink_dict['drink_ingr'] = drink_ingredients
-    
+
         drink_info.append(drink_dict)
     return drink_info
-        
+
+
 @app.route('/ingredientsresults.json', methods=["POST"])
 def search_bar():
     """api results for search bar based on ingredients"""
 
-    #get form variable from search bar
+    # get form variable from search bar
     list_of_ingredients = request.get_json()
     # print('list_of_ingredients', list_of_ingredients['ingredients'])
 
-    #joins each item in list by getting rid of white space between commas
+    # joins each item in list by getting rid of white space between commas
     ingredients = ",".join(list_of_ingredients['ingredients'])
     # print('ingredients', ingredients)
 
-    # #api request using CocktailDB 
-    ingredients_api = requests.get(f'https://www.thecocktaildb.com/api/json/v2/{cocktail_api_key}/filter.php?i={ingredients}')
-    
+    # #api request using CocktailDB
+    ingredients_api = requests.get(
+        f'https://www.thecocktaildb.com/api/json/v2/{cocktail_api_key}/filter.php?i={ingredients}')
+
     # #converting get request into JSON file
     ingredients_results = ingredients_api.json()
 
     # #assigning drink results to drinks key
     drinks = ingredients_results['drinks']
     # print('drinks', drinks)
-    
+
     # #create list for search results
     drink_results = []
+    print('************', drink_results)
 
     # #append drink string into new list
-    for i in range(0,10):
+    for i in range(0, 10):
         if i < len(drinks):
-            drink_results.append({'drink_name': drinks[i]['strDrink'], 
-                                'drink_thumb': drinks[i]['strDrinkThumb']})
+            drink_results.append({'drink_name': drinks[i]['strDrink'],
+                                  'drink_thumb': drinks[i]['strDrinkThumb']})
         else:
             break
-    
+
     cocktails_list = drink_recipe(drink_results)
 
     return jsonify(cocktails_list)
+
 
 if __name__ == '__main__':
 
