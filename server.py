@@ -97,28 +97,6 @@ def user_saved_recipes():
     else:
         return {'response': 'Already Saved'}
 
-    # cocktail name, image url, user item, ingredents
-
-    # cocktail_name = request.form["cocktailName"]
-    # img_url = request.form["imgUrl"]
-    # ingredients = request.form["ingredients"]
-    # user_id = session.get("user_id")
-
-    # current_user = User.query.filter_by(user_id=user_id).first()
-
-    # if not current_user:
-    #     return ("Please login or register!")
-
-    # check_duplicates = Cocktail.query.filter_by(
-    #     user_id=user_id, cocktail_name=cocktail_name).first()
-
-    # if not check_duplicates:
-    #     save_cocktail = Cocktail(cocktail_name=cocktail_name,
-    #                              img_url=img_url, ing_name=ingredients, user_id=user_id)
-
-    #     db.session.add(save_cocktail)
-    #     db.session.commit()
-
     return "saved!"
 
 
