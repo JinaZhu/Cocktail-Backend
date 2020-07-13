@@ -18,17 +18,17 @@ class User(db.Model):
         return f'<User user_id={self.user_id} email={self.email}>'
 
 
-class Ingredient(db.Model):
-    """Common ingredients for cocktail recipes"""
+# class Ingredient(db.Model):
+#     """Common ingredients for cocktail recipes"""
 
-    __tablename__ = 'ingredients'
+#     __tablename__ = 'ingredients'
 
-    ing_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    ing_name = db.Column(db.String(35), nullable=False)
+#     ing_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     ing_name = db.Column(db.String(35), nullable=False)
 
-    def __repr__(self):
+#     def __repr__(self):
         
-        return f'<Ingredient ing_id={self.ing_id} name={self.ing_name}>'
+#         return f'<Ingredient ing_id={self.ing_id} name={self.ing_name}>'
 
 
 class Cocktail(db.Model):
