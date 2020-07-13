@@ -178,7 +178,9 @@ def search_bar():
 
     # #create list for search results
     drink_results = []
-    print('************', drink_results)
+
+    if drinks == 'None Found':
+        return {'message': 'No results found'}
 
     # #append drink string into new list
     for i in range(0, 10):
@@ -189,7 +191,7 @@ def search_bar():
             break
 
     cocktails_list = drink_recipe(drink_results)
-
+    print(cocktails_list, 'cocktail_list \n\n')
     return jsonify(cocktails_list)
 
 
