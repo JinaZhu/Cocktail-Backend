@@ -1,5 +1,5 @@
 from sqlalchemy import func
-from model import connect_to_db, db, User, Ingredient, Cocktail
+from model import connect_to_db, db, User, Cocktail
 
 def add_user(user_input, pw_hash):
     """Save user information into database"""
