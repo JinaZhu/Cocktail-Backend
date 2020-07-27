@@ -220,6 +220,22 @@ def get_ing_from_saved():
     return jsonify(drink_ingredients)
 
 
+@app.route('/deleteSavedCocktail', methods=['POST'])
+def delete_saved_cocktail():
+
+    remove_cocktail = request.get_json()
+    user_id = session.get("user")
+
+    current_user = User.query.filter_by(user_id=user_id).first()
+    existing_save = Cocktail.query.filter_by(
+        user_id=user_id, cocktail_name=remove_cocktail).delete()
+
+    db.session.commit()
+
+    return {'response': f'{remove_cocktail} deleted'}
+
+
+
 if __name__ == '__main__':
 
     app.debug = True
