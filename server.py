@@ -1,6 +1,6 @@
 from flask import Flask, session, jsonify, request
 from flask_bcrypt import Bcrypt
-from model import connect_to_db, db, User, Ingredient, Cocktail
+from model import connect_to_db, db, User, Cocktail
 from model_helper import add_user
 import os
 import requests
@@ -112,21 +112,23 @@ def user_saved_recipes():
 def display_saved_cocktails():
     """send client user's saved cocktails for display"""
 
-    current_user = session.get("user_id")
+    current_user = session.get("user")
     saved_cocktail = Cocktail.query.filter_by(user_id=current_user).all()
 
     saved_cocktail_detail = []
 
     for cocktail in saved_cocktail:
         saved_cocktail_detail.append({'cocktail_name': cocktail.cocktail_name,
-                                      'img_url': cocktail.img_url, 'ingredients': cocktail.ing_name})
-
+                                      'img_url': cocktail.img_url})
+    
     return jsonify(saved_cocktail_detail)
 
 
 def drink_recipe(drink_results):
     """api search for drinks recipes"""
+
     drink_info = []
+
     for drink in drink_results:
         drink_name = drink['drink_name']
         drink_dict = {'drink_name': drink_name,
@@ -142,6 +144,7 @@ def drink_recipe(drink_results):
 
         drink_ingredients = []
         num = 1
+
         while f'strIngredient{num}' in recipe_results['drinks'][0] and recipe_results['drinks'][0][f'strIngredient{num}'] is not None:
             drink_ingredients.append(
                 recipe_results['drinks'][0][f'strIngredient{num}'])
@@ -150,6 +153,7 @@ def drink_recipe(drink_results):
         drink_dict['drink_ingr'] = drink_ingredients
 
         drink_info.append(drink_dict)
+
     return drink_info
 
 
@@ -191,8 +195,45 @@ def search_bar():
             break
 
     cocktails_list = drink_recipe(drink_results)
-    print(cocktails_list, 'cocktail_list \n\n')
+
     return jsonify(cocktails_list)
+
+
+@app.route('/getIngredients.json', methods=["POST"])
+def get_ing_from_saved():
+
+    saved_cocktail = request.get_json()
+    saved_cocktail = saved_cocktail.replace(' ', '_').lower()
+
+    ingredients = requests.get(
+        f'https://www.thecocktaildb.com/api/json/v2/{cocktail_api_key}/search.php?s={saved_cocktail}')
+
+    ing_results = ingredients.json()
+    drink_ingredients = []
+
+    num = 1
+
+    while f'strIngredient{num}' in ing_results['drinks'][0] and ing_results['drinks'][0][f'strIngredient{num}'] is not None:
+        drink_ingredients.append(ing_results['drinks'][0][f'strIngredient{num}'])
+        num += 1
+    
+    return jsonify(drink_ingredients)
+
+
+@app.route('/deleteSavedCocktail', methods=['POST'])
+def delete_saved_cocktail():
+
+    remove_cocktail = request.get_json()
+    user_id = session.get("user")
+
+    current_user = User.query.filter_by(user_id=user_id).first()
+    existing_save = Cocktail.query.filter_by(
+        user_id=user_id, cocktail_name=remove_cocktail).delete()
+
+    db.session.commit()
+
+    return {'response': f'{remove_cocktail} deleted'}
+
 
 
 if __name__ == '__main__':
